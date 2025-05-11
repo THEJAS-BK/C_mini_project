@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
 char tasks[25][25];
 void printTable(int n)
 {
@@ -36,12 +37,13 @@ int ask_user()
             printTable(userinp + 3);
             break;
         }
-        }
+    }
     return userinp + 3;
 }
 int Edit_mode(int n)
 {
     int idx;
+    printf("\n");
     while (1)
     {
         printf("enter the index of the task to delete :");
@@ -50,9 +52,12 @@ int Edit_mode(int n)
         {
             break;
         }
-        else
+        else if (idx == 0)
         {
-            printf("Invalid index");
+            break;
+        }
+        {
+            printf("Invalid index!!!\n");
         }
     }
 
@@ -75,6 +80,7 @@ void main()
     getchar();
     if ((toupper(user_inp)) == 'C')
     {
+        printf("      min 3 inputs\n\n");
         for (i = 0; i < n; i++)
         {
             printf("enter tasks %d :", i + 1);
@@ -88,7 +94,18 @@ void main()
         printTable(n);
         printf("\n");
         val = ask_user();
-        val2 = Edit_mode(val);
-        printTable(val2);
+        char del;
+        printf("enter (S) to delete elements (Q to quit) :");
+        scanf("%c", &del);
+        if (toupper(del) == 'S')
+        {
+            val2 = Edit_mode(val);
+            printTable(val);
+        }
+        else
+        {
+            printTable(val);
+            exit(0);
+        }
     }
 }
