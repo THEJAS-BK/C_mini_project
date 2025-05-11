@@ -66,7 +66,7 @@ int Edit_mode(int n)
     {
         strcpy(tasks[i], tasks[i + 1]);
     }
-    tasks[n - 1][0], '\0';
+    tasks[n - 1][0] = '\0';
     return n - 1;
 }
 
