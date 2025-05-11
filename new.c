@@ -13,6 +13,7 @@ void printTable(int n)
         if (tasks[i][0] != '\0')
             printf("%d\t\t%s \n", i + 1, tasks[i]);
     }
+    printf("\n");
 }
 int ask_user()
 {
@@ -43,7 +44,7 @@ int ask_user()
 int Edit_mode(int n)
 {
     int idx;
-    printf("\n");
+
     while (1)
     {
         printf("enter the index of the task to delete :");
@@ -74,6 +75,7 @@ void main()
 {
     char user_inp;
     int i, n = 3, val, val2;
+    printf("\n    Github : THEJAS-BK\n\n");
     printf("\n       TODO LIST \n\n");
     printf("Let's plan your day (c to create)");
     scanf("%c", &user_inp);
