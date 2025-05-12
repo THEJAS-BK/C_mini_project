@@ -5,10 +5,9 @@
 char tasks[25][25];
 void printTable(int n)
 {
-    int i, length = 0;
-    length += n;
+    int i;
     printf("\nindex\t\tTasks \n");
-    for (i = 0; i < length; i++)
+    for (i = 0; i < n; i++)
     {
         if (tasks[i][0] != '\0')
             printf("%d\t\t%s \n", i + 1, tasks[i]);
@@ -44,10 +43,9 @@ int ask_user()
 int Edit_mode(int n)
 {
     int idx;
-
     while (1)
     {
-        printf("enter the index of the task to delete :");
+        printf("\nenter the index of the task to delete :");
         scanf("%d", &idx);
         if (idx > 0 && idx < n)
         {
@@ -74,7 +72,7 @@ int Edit_mode(int n)
 void main()
 {
     char user_inp;
-    int i, n = 3, val, val2;
+    int i, n = 3, val;
     printf("\n    Github : THEJAS-BK\n\n");
     printf("\n       TODO LIST \n\n");
     printf("Let's plan your day (c to create)");
@@ -97,17 +95,26 @@ void main()
         printf("\n");
         val = ask_user();
         char del;
-        printf("enter (S) to delete elements (Q to quit) :");
-        scanf("%c", &del);
-        if (toupper(del) == 'S')
+        while (1)
         {
-            val2 = Edit_mode(val);
-            printTable(val);
-        }
-        else
-        {
-            printTable(val);
-            exit(0);
+            printf("enter (S) to delete elements (Q to quit) :");
+            scanf("%c", &del);
+            if (toupper(del) == 'S')
+            {
+                Edit_mode(val);
+                printTable(val);
+                break;
+            }
+            else if (toupper(del) == 'Q')
+            {
+                printTable(val);
+                exit(0);
+            }
+            else
+            {
+                printf("invalid input!!!\n");
+                getchar();
+            }
         }
     }
 }
