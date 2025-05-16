@@ -60,7 +60,6 @@ int Edit_mode(int n)
         }
     }
 
-    strcpy(tasks[idx - 1], "");
     for (int i = idx - 1; i < n - 1; i++)
     {
         strcpy(tasks[i], tasks[i + 1]);
@@ -103,7 +102,6 @@ void main()
             {
                 Edit_mode(val);
                 printTable(val);
-                break;
             }
             else if (toupper(del) == 'Q')
             {
