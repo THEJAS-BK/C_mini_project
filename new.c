@@ -14,6 +14,7 @@ void printTable(int n)
     }
     printf("\n");
 }
+
 int ask_user()
 {
     int userinp, i;
@@ -67,6 +68,23 @@ int Edit_mode(int n)
     tasks[n - 1][0] = '\0';
     return n - 1;
 }
+void writeTasksToFile(int n) {
+    FILE *fptr = fopen("tasks_output.txt", "w");
+    if (fptr == NULL) {
+        printf("Error opening file for writing!\n");
+        return;
+    }
+
+    fprintf(fptr, "Saved Tasks:\n");
+    for (int i = 0; i < n; i++) {
+        if (tasks[i][0] != '\0') {
+            fprintf(fptr, "%d. %s\n", i + 1, tasks[i]);
+        }
+    }
+
+    fclose(fptr);
+    printf("Tasks written to 'tasks_output.txt'\n");
+}
 
 void main()
 {
@@ -102,11 +120,14 @@ void main()
             {
                 Edit_mode(val);
                 printTable(val);
+                break;
+                
             }
             else if (toupper(del) == 'Q')
             {
                 printTable(val);
-                exit(0);
+                break;
+                
             }
             else
             {
@@ -114,5 +135,10 @@ void main()
                 getchar();
             }
         }
+writeTasksToFile(val); 
+printf("the tasks are saved successfully");
+exit(0);
     }
+    
+    
 }
