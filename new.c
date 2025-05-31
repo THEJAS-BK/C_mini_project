@@ -48,14 +48,11 @@ int Edit_mode(int n)
     {
         printf("\nenter the index of the task to delete :");
         scanf("%d", &idx);
-        if (idx > 0 && idx < n)
+        if (idx >= 0 && idx < n)
         {
             break;
         }
-        else if (idx == 0)
-        {
-            break;
-        }
+        else
         {
             printf("Invalid index!!!\n");
         }
@@ -115,7 +112,7 @@ void main()
         char del;
         while (1)
         {
-            printf("enter (S) to delete elements (Q to quit) :");
+            printf("enter (S to edit) to delete elements (Q to quit) :");
             scanf("%c", &del);
             if (toupper(del) == 'S')
             {
